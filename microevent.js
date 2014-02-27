@@ -24,8 +24,8 @@ MicroEvent.prototype	= {
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};
 		if( event in this._events === false  )	return;
-		for(var i = 0; i < this._events[event].length; i++){
-			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
+		for(var i = 0, cbs=this._events[event].slice(); i < cbs.length; i++){
+			cbs[i].apply(this, Array.prototype.slice.call(arguments, 1));
 		}
 	}
 };
